@@ -1,6 +1,6 @@
 {
   "name": "opencode-worker-provider-router",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Route OpenCode worker models through their parent session's provider.",
   "type": "module",
   "exports": "./index.js",

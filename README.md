@@ -15,7 +15,7 @@ For example, `worker-fast` configured as `9router/cx/gpt-6.1-sol#medium-fast` us
 Requires OpenCode V2 with `ctx.tool.hook("execute.before")` (API inspected against **2.0.22**).
 
 ```sh
-opencode plugin add github:emi-ran/opencode-worker-provider-router#v0.1.0
+opencode plugin add github:emi-ran/opencode-worker-provider-router#v0.1.1
 ```
 
 Both providers must already be configured with matching worker models and variants. The plugin does **not** create providers, start a local server, copy credentials, or change agent defaults.
@@ -40,10 +40,12 @@ npm test
 
 Tests use Node's built-in test runner and mocked OpenCode contexts; they make no model requests. A loaded-plugin check alone does not establish end-to-end model routing. Live model calls can incur provider charges.
 
+The model-list mock follows the V2 API response `{ data: Model[] }`. Routing reads `.data` before finding a target; treating the response itself as an array breaks follow-up calls to existing subagent sessions (OpenCode issue [#54074](https://github.com/anomalyco/opencode/issues/54074)).
+
 ## Remove
 
 ```sh
-opencode plugin remove github:emi-ran/opencode-worker-provider-router#v0.1.0
+opencode plugin remove github:emi-ran/opencode-worker-provider-router#v0.1.1
 ```
 
 ## License

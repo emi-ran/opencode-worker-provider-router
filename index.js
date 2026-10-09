@@ -20,7 +20,7 @@ export default {
       const model = child?.agent === input.agent ? child.model : agent.model;
       if (!model || !providers.has(model.providerID)) return;
 
-      const available = await ctx.model.list();
+      const available = (await ctx.model.list()).data;
       const target = available.find((item) => item.providerID === providerID && item.id === model.id);
       if (!target || target.enabled === false ||
           (model.variant && !target.variants.some((variant) => variant.id === model.variant))) {

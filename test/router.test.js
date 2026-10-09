@@ -17,7 +17,7 @@ async function fixture() {
     tool: { hook: async (name, callback) => { assert.equal(name, "execute.before"); hook = callback; } },
     session: { get: async ({ sessionID }) => structuredClone(sessions[sessionID]) },
     agent: { get: async () => ({ model: { providerID: "9router", id: "cx/sol", variant: "medium-fast" } }) },
-    model: { list: async () => models },
+    model: { list: async () => ({ data: models }) },
   });
   const event = (sessionID, input = {}) => ({ tool: "subagent", sessionID, input: { agent: "worker-fast", background: true, ...input } });
   return { hook, event, models };
